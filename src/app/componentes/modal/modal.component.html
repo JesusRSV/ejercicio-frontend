@@ -1,0 +1,50 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Registro y actualización</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    
+    <form [formGroup]="registrarForm" (ngSubmit)="onSubmit(registrarForm.value)" novalidate>
+        <input type="hidden" id="id" formControlName="id">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingresa un nombre"
+                formControlName="nombre">
+                <div *ngIf="registrarForm.get('nombre').hasError('required')">
+                    <span class="text-danger">Debe ingresar un nombre.</span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label for="apellido">Apellído</label>
+            <input type="text" class="form-control" id="apellido" placeholder="Ingresa un apéllido"
+                formControlName="apellido">
+            <div *ngIf="registrarForm.get('apellido').hasError('required')">
+                <span class="text-danger">Debe ingresar un apellido.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="text" class="form-control" id="telefono" placeholder="Ingresa un teléfono"
+                formControlName="telefono" maxlength="20">
+            <div *ngIf="registrarForm.get('telefono').hasError('required')">
+                <span class="text-danger">Debe ingresar un telefono.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Ingresa un email" formControlName="email">
+        </div>
+        <div *ngIf="registrarForm.get('email').hasError('required')">
+            <span class="text-danger">Debe ingresar un email.</span>
+        </div>
+        <div *ngIf="registrarForm.get('email').hasError('email')">
+            <span class="text-danger">El email debe ser válido</span>
+        </div>
+        
+
+        <button type="submit" class="btn btn-primary btn-block mt-4" [disabled]="registrarForm.invalid">Guardar</button>
+    </form>
+    <!-- <button (click)="passBack()" type="submit" class="btn btn-primary w-100">Pass back</button> -->
+</div>

@@ -1,0 +1,27 @@
+<h2>Agenda telefónica <a (click)="openModal()" class="btn btn-info text-light">Registrar</a></h2>
+
+<input class="form-control mb-5 mt-3" type="text" [value]="filterText" [placeholder]="filterPlaceholder" [formControl]="filterInput">
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellído</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">Email</th>
+            <th scope="col">Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let registro of users | filter:{ nombre: filterText, apellido: filterText } : false">
+            <td>{{ registro.nombre }}</td>
+            <td>{{ registro.apellido }}</td>
+            <td>{{ registro.telefono }}</td>
+            <td>{{ registro.email }}</td>
+            <td>
+                <a class="btn btn-primary text-light ml-1" (click)="openModal(registro.id)"><i class="fas fa-user-edit"></i></a>
+                <a class="btn btn-danger text-light ml-1" (click)="delete(registro.id)"><i class="fas fa-trash"></i></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
